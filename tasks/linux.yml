@@ -87,6 +87,9 @@
   tags:
     - security
 
+- import_tasks: privileged.yml
+  when: logstash_privileged | bool
+
 - name: Start Logstash
   service:
     name: logstash
