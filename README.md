@@ -19,6 +19,8 @@ Role Variables
 
 This role is still in development. Please refer to `defaults/main.yml` for the current set of available variables.
 
+* *logstash_privileged*: Set this to `true` if you want to allow Logstash to open privileged ports (default: `false`)
+
 Dependencies
 ------------
 
