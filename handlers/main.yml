@@ -1,6 +1,6 @@
 ---
 # handlers file for logstash
-- name: Restart Logstash
+- name: restart Logstash
   service:
     name: logstash
     state: restarted
@@ -9,3 +9,5 @@
     name: logstash
     state: restarted
   when: not logstash_config_autoreload
+- name: call ldconfig
+  command: "/sbin/ldconfig"
