@@ -4,6 +4,7 @@ logstash_release: 7
 logstash_manage_java: true
 logstash_config_backup: no
 logstash_manage_yaml: true
+logstash_privileged: false
 
 # config items in yaml file #
 
