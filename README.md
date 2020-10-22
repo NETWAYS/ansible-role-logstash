@@ -59,6 +59,8 @@ The following variables only apply if you use this role together with our Elasti
 
 * *logstash_privileged*: Set this to `true` if you want to allow Logstash to open privileged ports (default: `false`)
 
+* *logstash_privileged*: Set this to `true` if you want to allow Logstash to open privileged ports (default: `false`)
+
 Dependencies
 ------------
 
