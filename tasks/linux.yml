@@ -76,3 +76,5 @@
   when: elastic_stack_full_stack | bool and logstash_security | bool
   tags:
     - security
+- import_tasks: privileged.yml
+  when: logstash_privileged | bool
