@@ -1,6 +1,6 @@
 ---
 # handlers file for logstash
-- name: restart Logstash
+- name: Restart Logstash
   service:
     name: logstash
     state: restarted
