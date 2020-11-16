@@ -19,6 +19,7 @@ If you want to use the default pipeline (or other pipelines communicating via Re
 Role Variables
 --------------
 
+* *logstash_enable*: Start and enable Logstash service (default: `true`)
 * *logstash_release*: Major release of Logstash to install (default: `7`)
 * *logstash_manage_java*: Make sure Java is installed (default: `true`)
 * *logstash_config_backup*: Keep backups of all changed configuration (defualt: `no`)

@@ -1,5 +1,6 @@
 ---
 # defaults file for logstash
+logstash_enable: true
 logstash_release: 7
 logstash_manage_java: true
 logstash_config_backup: no
@@ -26,8 +27,8 @@ logstash_elasticsearch: 127.0.0.1
 
 # logstash security
 logstash_security: false
-#logstash_user: logstash_system
-#logstash_password: password
+logstash_user: logstash_writer
+logstash_password: password
 
 # elastic full stack configuration
 elastic_stack_full_stack: false

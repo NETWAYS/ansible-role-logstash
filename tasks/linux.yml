@@ -86,3 +86,10 @@
   when: elastic_stack_full_stack | bool and logstash_security | bool
   tags:
     - security
+
+- name: Start Logstash
+  service:
+    name: logstash
+    state: started
+    enabled: yes
+  when: logstash_enable | bool
