@@ -19,6 +19,7 @@
 - name: Fetch ca certificate from ca host to master
   fetch: src={{ elastic_ca_dir }}/ca.crt dest=/tmp/ flat=yes
   delegate_to: "{{ elasticsearch_ca }}"
+
 - name: Copy the ca certificate to actual node
   copy:
     src: /tmp/ca.crt

@@ -31,4 +31,5 @@ logstash_security: false
 
 # elastic full stack configuration
 elastic_stack_full_stack: false
-#elastic_search_ca: /etc/elasticsearch/certs/elasticsearch.ca
+elastic_ca_dir: /opt/es-ca
+elastic_initial_passwords: /usr/share/elasticsearch/initial_passwords
