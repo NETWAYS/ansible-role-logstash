@@ -52,13 +52,6 @@ The following variables only apply if you use this role together with our Elasti
 * *elastic_stack_full_stack*: Use `ansible-role-elasticsearch` as well (default: `false`)
 * *elastic_ca_dir*: Directory where the CA and certificates lie on the main Elasticsearch host (default: `/opt/es-ca`)
 * *elastic_initial_passwords*: File where initial passwords are stored on the main Elasticsearch host (default: `/usr/share/elasticsearch/initial_passwords`)
-
-* *logstash_privileged*: Set this to `true` if you want to allow Logstash to open privileged ports (default: `false`)
-
-* *logstash_privileged*: Set this to `true` if you want to allow Logstash to open privileged ports (default: `false`)
-
-* *logstash_privileged*: Set this to `true` if you want to allow Logstash to open privileged ports (default: `false`)
-
 * *logstash_privileged*: Set this to `true` if you want to allow Logstash to open privileged ports (default: `false`)
 
 Dependencies
