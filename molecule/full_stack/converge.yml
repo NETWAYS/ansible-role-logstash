@@ -9,6 +9,9 @@
     elastic_stack_full_stack: true
     elasticsearch_ca: ansible-role-logstash_full_stack
   tasks:
+    - name: "Include Elastics repos role"
+      include_role:
+        name: elastic-repos
     - name: "Include Elasticsearch role"
       include_role:
         name: elasticsearch
