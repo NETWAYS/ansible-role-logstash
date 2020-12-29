@@ -11,3 +11,23 @@
     wait_for:
       port: 5044
     when: "'logstash' in group_names"
+  - name: Get elastic password
+    shell: |
+      grep "PASSWORD elastic " /usr/share/elasticsearch/initial_passwords |
+      awk {' print $4 '}
+    register: elastic_pass
+    when: "'elasticsearch' in group_names"
+  - name: Query for Logstasch indices
+    shell: |
+      curl -ks -uelastic:{{ elastic_pass.stdout }} https://localhost:9200/_cat/indices |
+      grep logstash |
+      awk {' print $7 '} |
+      sort -n |
+      tail -1
+    register: logstash_count
+    when: "'elasticsearch' in group_names"
+  - name: Fail when logstash is empty
+    fail:
+      msg: Logstash Index is empty
+    when: logstash_count.stdout == 0
+    when: "'elasticsearch' in group_names"
