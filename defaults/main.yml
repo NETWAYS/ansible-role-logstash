@@ -15,11 +15,11 @@ logstash_config_path_logs: /var/log/logstash
 
 # pipeline configuration #
 logstash_manage_pipelines: true
-#logstash_pipelines:
-#  shipper:
-#    name: shipper
-#    source: https://github.com/widhalmt/shipper-logstash-pipeline.git
-#    outputkey: shipper-out
+# logstash_pipelines:
+#   shipper:
+#     name: shipper
+#     source: https://github.com/widhalmt/shipper-logstash-pipeline.git
+#     outputkey: shipper-out
 logstash_elasticsearch_output: true
 logstash_beats_input: true
 logstash_connector: true

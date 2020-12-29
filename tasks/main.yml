@@ -53,7 +53,7 @@
         owner: root
         group: root
         mode: 0644
-    
+
     - name: Create default Elasticsearch output pipeline output
       template:
         src: elasticsearch-output.conf.j2
