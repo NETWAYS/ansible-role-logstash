@@ -31,7 +31,7 @@
     dest: "/etc/logstash/conf.d/{{ logstash_pipelines[item].name }}"
     version: master
   with_items: "{{ logstash_pipelines }}"
-  when: logstash_manage_pipelines | bool
+  when: logstash_manage_pipelines | bool and logstash_pipelines is defined
   notify:
     - Restart Logstash noauto
 
