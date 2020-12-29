@@ -22,9 +22,10 @@
 - name: Logstash
   hosts: logstash
   tasks:
-    - name: "Include Redis"
-      include_role:
-        name: geerlingguy.redis
+    # temporarily disabled because role is unavailable
+    #- name: "Include Redis"
+    #  include_role:
+    #    name: geerlingguy.redis
     - name: "Include Logstash"
       include_role:
         name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
