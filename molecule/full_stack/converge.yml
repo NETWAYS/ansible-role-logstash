@@ -23,6 +23,15 @@
     - name: "Include Filebeat"
       include_role:
         name: filebeat
+    - name: "Include Elasticsearch role"
+      include_role:
+        name: elasticsearch
+    - name: "Include Redis"
+      include_role:
+        name: geerlingguy.redis
+    - name: "Include Logstash"
+      include_role:
+        name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
     - name: Configure rsyslog
       lineinfile:
         line: "*.* @@localhost:514"
@@ -32,25 +41,3 @@
         name: rsyslog
         state: restarted
       changed_when: false
-- name: Elasticsearch
-  hosts: elasticsearch
-  vars:
-    logstash_enable: true
-    logstash_security: true
-  tasks:
-    - name: "Include Elasticsearch role"
-      include_role:
-        name: elasticsearch
-- name: Logstash
-  hosts: logstash
-  vars:
-    logstash_enable: true
-    logstash_security: true
-  tasks:
-    # temporarily disabled because role is unavailable
-    #- name: "Include Redis"
-    #  include_role:
-    #    name: geerlingguy.redis
-    - name: "Include Logstash"
-      include_role:
-        name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
