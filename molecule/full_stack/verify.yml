@@ -4,9 +4,9 @@
 - name: Check if Logstash configuration does what it should
   hosts: all
   tasks:
-#  - name: Give some time for tools to connect
-#    wait_for:
-#      timeout: 300
+  - name: Give some time for tools to connect
+    wait_for:
+      timeout: 120
   - name: Run syntax check
     command: "/usr/share/logstash/bin/logstash --path.settings=/etc/logstash -t"
     when: "'logstash' in group_names"
