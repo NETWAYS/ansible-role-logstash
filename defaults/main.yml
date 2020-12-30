@@ -23,7 +23,7 @@ logstash_manage_pipelines: true
 logstash_elasticsearch_output: true
 logstash_beats_input: true
 logstash_connector: true
-logstash_elasticsearch: 127.0.0.1
+#logstash_elasticsearch: 127.0.0.1
 
 # logstash security
 logstash_security: false

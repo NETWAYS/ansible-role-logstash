@@ -20,6 +20,18 @@
       service:
         name: rsyslog
         state: started
+    - name: "Include Filebeat"
+      include_role:
+        name: filebeat
+    - name: Configure rsyslog
+      lineinfile:
+        line: "*.* @@localhost:514"
+        path: /etc/rsyslog.conf
+    - name: Restart rsyslog
+      service:
+        name: rsyslog
+        state: restarted
+      changed_when: false
 - name: Elasticsearch
   hosts: elasticsearch
   tasks:
@@ -36,18 +48,3 @@
     - name: "Include Logstash"
       include_role:
         name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
-- name: Filebeat
-  hosts: filebeat
-  tasks:
-    - name: "Include Filebeat"
-      include_role:
-        name: filebeat
-    - name: Configure rsyslog
-      lineinfile:
-        line: "*.* @@localhost:514"
-        path: /etc/rsyslog.conf
-    - name: Restart rsyslog
-      service:
-        name: rsyslog
-        state: restarted
-      changed_when: false
