@@ -34,12 +34,18 @@
       changed_when: false
 - name: Elasticsearch
   hosts: elasticsearch
+  vars:
+    logstash_enable: true
+    logstash_security: true
   tasks:
     - name: "Include Elasticsearch role"
       include_role:
         name: elasticsearch
 - name: Logstash
   hosts: logstash
+  vars:
+    logstash_enable: true
+    logstash_security: true
   tasks:
     # temporarily disabled because role is unavailable
     #- name: "Include Redis"
