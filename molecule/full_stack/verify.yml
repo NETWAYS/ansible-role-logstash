@@ -27,11 +27,15 @@
       tail -1
     register: logstash_count
     when: "'elasticsearch' in group_names"
+  - name: Show full output
+    debug:
+      var: logstash_count
+    when: "'elasticsearch' in group_names"
   - name: Fail when logstash is empty
     fail:
       msg: "Logstash Index is empty"
     when: "'elasticsearch' in group_names and logstash_count.stdout == 0"
   - name: Show number of received events
     debug:
-      msg: "Elasticsearch received {{ logstash_count.stdout }} so far"
+      msg: "Elasticsearch received {{ logstash_count.stdout }} events so far"
     when: "'elasticsearch' in group_names"
