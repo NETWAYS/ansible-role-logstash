@@ -13,6 +13,13 @@
     - name: "Include Elastics repos role"
       include_role:
         name: elastic-repos
+    - name: Install rsyslog
+      package:
+        name: rsyslog
+    - name: Start rsyslog
+      service:
+        name: rsyslog
+        state: started
 - name: Elasticsearch
   hosts: elasticsearch
   tasks:
@@ -35,3 +42,11 @@
     - name: "Include Filebeat"
       include_role:
         name: filebeat
+    - name: Configure rsyslog
+      lineinfile:
+        line: "*.* @@localhost:514"
+        path: /etc/rsyslog.conf
+    - name: Restart rsyslog
+      service:
+        name: rsyslog
+        state: restarted
