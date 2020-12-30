@@ -34,3 +34,4 @@
   - name: Show number of received events
     debug:
       msg: "Elasticsearch received {{ logstash_count.stdout }} so far"
+    when: "'elasticsearch' in group_names"
