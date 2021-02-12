@@ -43,6 +43,11 @@ Aside from `logstash.yml` we can manage Logstashs pipelines.
 * *logstash_elasticsearch*: Address of Elasticsearch instance for default output (default: list of Elasticsearch nodes from `elasticsearch` role or `localhost` when used standalone)
 * *logstash_security*: Enable X-Security (default: `false`)
 
+These variables are identical over all our elastic related roles, hence the different naming scheme.
+
+*elastic_release*: Major release version of Elastic stack to configure. (default: `7`)
+*elastic_variant*: Variant of the stack to install. Valid values: `elastic` or `oss`. (default: `elastic`)
+
 The following variables only apply if you use this role together with our Elasticsearch and Kibana roles.
 
 * *elastic_stack_full_stack*: Use `ansible-role-elasticsearch` as well (default: `false`)
