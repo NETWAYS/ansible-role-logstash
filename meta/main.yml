@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: logstash
   author: netways
   description: Logstash for Linux
   company: "Netways GmbH"
