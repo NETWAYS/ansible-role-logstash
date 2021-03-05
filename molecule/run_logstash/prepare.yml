@@ -13,6 +13,7 @@
       package:
         name:
           - gpg
+          - gpg-agent
           - procps
           - curl
       when: ansible_os_family == "Debian"
