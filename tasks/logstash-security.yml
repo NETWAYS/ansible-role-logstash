@@ -59,7 +59,6 @@
     dest: /tmp/ca.crt
     flat: yes
   delegate_to: "{{ elasticsearch_ca }}"
-  changes_when: false
   tags:
     - certificates
 
