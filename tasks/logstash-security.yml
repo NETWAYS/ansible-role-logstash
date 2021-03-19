@@ -19,6 +19,8 @@
   delegate_to: "{{ elasticsearch_ca }}"
   args:
     creates: "{{ elastic_ca_dir }}/{{ ansible_hostname }}.p12"
+  tags:
+    - certificates
 
 - name: Fetch certificate from ca host to master
   fetch:
@@ -28,6 +30,7 @@
   delegate_to: "{{ elasticsearch_ca }}"
   tags:
     - certificates
+  changes_when: false
 
 - name: Create certificate directory
   file:
@@ -59,6 +62,7 @@
   delegate_to: "{{ elasticsearch_ca }}"
   tags:
     - certificates
+  changes_when: false
 
 - name: Copy the ca certificate to actual node
   copy:
