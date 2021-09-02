@@ -16,7 +16,16 @@
   shell: >
     openssl pkcs12
     -in "/etc/logstash/certs/cert.p12"
+    -password pass:""
     -nodes |
     openssl pkcs12
     -export
+    -password pass:""
     -out "/etc/logstash/certs/keystore.pfx"
+
+- name: Reset permissions on keystore
+  file:
+    path: /etc/logstash/certs/keystore.pfx
+    owner: root
+    group: logstash
+    mode: 0660
