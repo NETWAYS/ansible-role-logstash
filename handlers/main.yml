@@ -11,3 +11,12 @@
     name: logstash
     state: restarted
   when: not logstash_config_autoreload and logstash_enable | bool
+
+- name: Reconvert keystore
+  shell: >
+    openssl pkcs12
+    -in "/etc/logstash/certs/cert.p12"
+    -nodes |
+    openssl pkcs12
+    -export
+    -out "/etc/logstash/certs/keystore.pfx"

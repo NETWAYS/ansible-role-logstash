@@ -49,9 +49,22 @@
     group: logstash
     mode: 0640
   notify:
+    - Reconvert keystore
     - Restart Logstash
   tags:
     - certificates
+
+- name: Convert keystore
+  shell: >
+    openssl pkcs12
+    -in "/etc/logstash/certs/cert.p12"
+    -nodes |
+    openssl pkcs12
+    -export
+    -out "/etc/logstash/certs/keystore.pfx"
+  args:
+    creates: "/etc/logstash/certs/keystore.pfx"
+
 
 - name: Fetch ca certificate from ca host to master
   fetch:
