@@ -23,7 +23,7 @@
 
 - name: Ensure Logstash OSS is installed
   package:
-    package: "logstash-oss{{ logstash_version }}"
+    name: "logstash-oss{{ logstash_version }}"
   when:
     - elastic_variant == "oss"
 
