@@ -1,17 +1,31 @@
 input {
 {% for input in item.input %}
-# {{ input.name }}
+
+# {{ input.name }} connector
   redis {
     host => "localhost"
     data_type => "list"
     key => "{{ input.key }}"
   }
 {% endfor %}
+
 }
+
 output {
+{% for output in item.output %}
+
+# {{ output.name }} connector
+{% if output.condition is defined %}
+if {{ output.condition }} {
+{% endif %}
   redis {
     host => "localhost"
     data_type => "list"
-    key => "forwarder"
+    key => "{{ output.key }}"
   }
+{% if output.condition is defined %}
+  }
+{% endif %}
+{% endfor %}
+
 }

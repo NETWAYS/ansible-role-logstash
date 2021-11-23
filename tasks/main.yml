@@ -128,25 +128,15 @@
     - logstash_beats_input | bool
     - not logstash_no_pipelines | bool
 
-- name: Create default connector pipeline
+- name: Create connector pipelines
   block:
-    - name: Create directory for default connector pipeline
+    - name: Create directory for connector pipelines
       file:
         path: "/etc/logstash/conf.d/ansible-connector"
         state: directory
         owner: root
         group: root
         mode: 0755
-
-    - name: Create default connector pipeline inputs
-      template:
-        src: default-connector.conf.j2
-        dest: "/etc/logstash/conf.d/ansible-connector/connector.conf"
-        owner: root
-        group: root
-        mode: 0644
-      notify:
-        - Restart Logstash noauto
 
     - name: Create connector pipelines
       template:
@@ -156,7 +146,9 @@
         group: root
         mode: 0644
       with_items:
-        logstash_connector_pipelines
+        "{{ logstash_connector_pipelines }}"
+      notify:
+        - Restart Logstash noauto
 
   when:
     - logstash_connector | bool

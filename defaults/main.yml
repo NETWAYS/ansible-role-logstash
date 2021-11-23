@@ -42,6 +42,9 @@ logstash_connector_pipelines:
     output:
       - name: default
         key: forwarder
+#      - name: special
+#        key: myspecial
+#        condition: '[program] == "special"'
 
 # elastic full stack configuration
 elastic_stack_full_stack: false
