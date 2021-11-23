@@ -1,0 +1,17 @@
+input {
+{% for input in item.input %}
+# {{ input.name }}
+  redis {
+    host => "localhost"
+    data_type => "list"
+    key => "{{ input.key }}"
+  }
+{% endfor %}
+}
+output {
+  redis {
+    host => "localhost"
+    data_type => "list"
+    key => "forwarder"
+  }
+}

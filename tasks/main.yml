@@ -147,6 +147,17 @@
         mode: 0644
       notify:
         - Restart Logstash noauto
+
+    - name: Create connector pipelines
+      template:
+        src: connector.conf.j2
+        dest: "/etc/logstash/conf.d/ansible-connector/[item]-connector.conf"
+        owner: root
+        group: root
+        mode: 0644
+      with_items:
+        logstash_connector_pipelines
+
   when:
     - logstash_connector | bool
     - not logstash_no_pipelines | bool

@@ -33,6 +33,16 @@ logstash_security: false
 logstash_user: logstash_writer
 logstash_password: password
 
+# connector pipelines
+logstash_connector_pipelines:
+  - name: default
+    input:
+      - name: default
+        key: input
+    output:
+      - name: default
+        key: forwarder
+
 # elastic full stack configuration
 elastic_stack_full_stack: false
 elastic_ca_dir: /opt/es-ca
