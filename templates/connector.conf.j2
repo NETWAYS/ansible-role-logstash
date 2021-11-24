@@ -15,16 +15,16 @@ output {
 {% for output in item.output %}
 
 # {{ output.name }} connector
-{% if output.condition is defined %}
-if {{ output.condition }} {
+{% if output.condition is defined or item.exclusive | bool %}
+{% if not loop.first and item.exclusive | bool %}else {% endif %}{% if (not loop.last and item.exclusive | bool) or not item.exclusive %}if {% endif %}{% if output.condition is defined %}{{ output.condition }} {% endif %}{
 {% endif %}
   redis {
     host => "localhost"
     data_type => "list"
     key => "{{ output.key }}"
   }
-{% if output.condition is defined %}
-  }
+{% if output.condition is defined or item.exclusive | bool %}
+}
 {% endif %}
 {% endfor %}
 

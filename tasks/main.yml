@@ -6,6 +6,9 @@
   when:
     - logstash_elasticsearch is undefined
     - groups['elasticsearch'] is defined
+  tags:
+    - configuration
+    - logstash_configuration
 
 - name: Set Elasticsearch hosts to localhost if no other information available
   set_fact:
@@ -14,6 +17,9 @@
   when:
     - logstash_elasticsearch is undefined
     - groups['elasticsearch'] is undefined
+  tags:
+    - configuration
+    - logstash_configuration
 
 - name: Ensure Logstash is installed
   package:
@@ -38,6 +44,9 @@
   notify:
     - Restart Logstash
   when: logstash_manage_yaml | bool
+  tags:
+    - configuration
+    - logstash_configuration
 
 - name: Fetch pipelines from git repositories
   block:
@@ -61,6 +70,9 @@
   when:
     - logstash_pipelines is defined
     - not logstash_no_pipelines | bool
+  tags:
+    - configuration
+    - logstash_configuration
 
 - name: Create default Elasticsearch output pipeline
   block:
@@ -94,6 +106,9 @@
   when:
     - logstash_elasticsearch_output | bool
     - not logstash_no_pipelines | bool
+  tags:
+    - configuration
+    - logstash_configuration
 
 - name: Create default Beats input pipeline
   block:
@@ -127,6 +142,9 @@
   when:
     - logstash_beats_input | bool
     - not logstash_no_pipelines | bool
+  tags:
+    - configuration
+    - logstash_configuration
 
 - name: Create connector pipelines
   block:
@@ -141,7 +159,7 @@
     - name: Create connector pipelines
       template:
         src: connector.conf.j2
-        dest: "/etc/logstash/conf.d/ansible-connector/[item]-connector.conf"
+        dest: "/etc/logstash/conf.d/ansible-connector/{{ item.name }}-connector.conf"
         owner: root
         group: root
         mode: 0644
@@ -153,6 +171,9 @@
   when:
     - logstash_connector | bool
     - not logstash_no_pipelines | bool
+  tags:
+    - configuration
+    - logstash_configuration
 
 - name: Configure Logstash pipelines
   template:
@@ -165,6 +186,9 @@
   when:
     - logstash_manage_pipelines | bool
     - not logstash_no_pipelines | bool
+  tags:
+    - configuration
+    - logstash_configuration
 
 - import_tasks: logstash-security.yml
   when:
