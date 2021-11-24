@@ -150,16 +150,18 @@
   block:
     - name: Create directory for connector pipelines
       file:
-        path: "/etc/logstash/conf.d/ansible-connector"
+        path: "/etc/logstash/conf.d/ansible-{{ item.name }}-connector"
         state: directory
         owner: root
         group: root
         mode: 0755
+      with_items:
+        "{{ logstash_connector_pipelines }}"
 
     - name: Create connector pipelines
       template:
         src: connector.conf.j2
-        dest: "/etc/logstash/conf.d/ansible-connector/{{ item.name }}-connector.conf"
+        dest: "/etc/logstash/conf.d/ansible-{{ item.name }}-connector/{{ item.name }}-connector.conf"
         owner: root
         group: root
         mode: 0644
