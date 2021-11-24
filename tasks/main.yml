@@ -73,6 +73,7 @@
         dest: "/etc/logstash/conf.d/{{ logstash_pipelines[item].name }}"
         version: master
       with_items: "{{ logstash_pipelines }}"
+      when: logstash_pipelines[item].source is defined
       notify:
         - Restart Logstash noauto
   when:
@@ -169,7 +170,7 @@
     - name: Create connector pipelines
       template:
         src: connector.conf.j2
-        dest: "/etc/logstash/conf.d/ansible-{{ item.name }}-connector/{{ item.name }}-connector.conf"
+        dest: "/etc/logstash/conf.d/ansible-{{ item.name }}-connector/pipe.conf"
         owner: root
         group: root
         mode: 0644
