@@ -37,6 +37,7 @@ logstash_password: password
 # see docs/connector-pipelines.md for details
 logstash_connector_pipelines:
   - name: default
+    exclusive: false
     input:
       - name: default
         key: input

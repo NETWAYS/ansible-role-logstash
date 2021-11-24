@@ -64,6 +64,7 @@ To get the connector pipeline from above, you can set the following variable:
 ```
 logstash_connector_pipelines:
   - name: syslog-sshd
+    exclusive: false
     input:
       - name: default
         key: syslog-output
