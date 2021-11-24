@@ -212,6 +212,12 @@ else  {
 
 Here the `default` connector only receives the events that haven't already been sent to one of the others.
 
+## Extra configuration ##
+
+### Congestion threshold ###
+
+Every Output can have a `congestion:` option with a numerical value. If the Redis key already holds more items than the value says, the output will stop.
+
 ## Caveats ##
 
 There are still some minor issues you need to keep in mind:

@@ -22,6 +22,8 @@ output {
     host => "localhost"
     data_type => "list"
     key => "{{ output.key }}"
+    {% if output.congestion is defined %}congestion_threshold => {{ output.congestion }}{% endif %}
+
   }
 {% if output.condition is defined or item.exclusive | bool %}
 }
