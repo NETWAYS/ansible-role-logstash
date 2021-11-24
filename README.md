@@ -49,6 +49,7 @@ Aside from `logstash.yml` we can manage Logstashs pipelines.
 * *logstash_connector_pipelines*: Definition of connector pipelines. See docs/connector-pipelines.md for details
 * *logstash_elasticsearch*: Address of Elasticsearch instance for default output (default: list of Elasticsearch nodes from `elasticsearch` role or `localhost` when used standalone)
 * *logstash_security*: Enable X-Security (default: `false`)
+* *logstash_legacy_monitoring*: Enables legacy monitoring - ignored when `elastic_stack_full_stack` is not set. (default: `true`)
 
 These variables are identical over all our elastic related roles, hence the different naming scheme.
 

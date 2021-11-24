@@ -33,6 +33,14 @@
   when:
     - elastic_variant == "oss"
 
+- import_tasks: logstash-security.yml
+  when:
+    - elastic_stack_full_stack | bool
+    - logstash_security | bool
+    - elastic_variant == "elastic"
+  tags:
+    - security
+
 - name: Configure Logstash
   template:
     src: logstash.yml.j2
@@ -191,14 +199,6 @@
   tags:
     - configuration
     - logstash_configuration
-
-- import_tasks: logstash-security.yml
-  when:
-    - elastic_stack_full_stack | bool
-    - logstash_security | bool
-    - elastic_variant == "elastic"
-  tags:
-    - security
 
 - name: Install Logstash plugins
   logstash_plugin:
