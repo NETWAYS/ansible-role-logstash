@@ -2,6 +2,6 @@ output {
   redis {
     host => "localhost"
     data_type => "list"
-    key => "{% logstash_pipelines[item].input %}"
+    key => "{% logstash_pipelines[item].output %}"
   }
 }
