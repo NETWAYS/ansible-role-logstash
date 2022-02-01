@@ -80,7 +80,8 @@
     - name: Create simple input
       template:
         src: simple-input.conf.j2
-        dest: "/etc/logstash/conf.d/{{ logstash_pipelines[item].name }}/input.conf"
+        dest: "/etc/logstash/conf.d/{{ logstash_pipelines[item].name }}\
+        /input.conf"
         owner: root
         group: root
         mode: 0644
@@ -92,7 +93,8 @@
     - name: Create simple output
       template:
         src: simple-output.conf.j2
-        dest: "/etc/logstash/conf.d/{{ logstash_pipelines[item].name }}/output.conf"
+        dest: "/etc/logstash/conf.d/{{ logstash_pipelines[item].name }}\
+        /output.conf"
         owner: root
         group: root
         mode: 0644
