@@ -17,6 +17,3 @@
           - procps
           - curl
       when: ansible_os_family == "Debian"
-    - name: Install unzip for certificate handling
-      package:
-        name: unzip
