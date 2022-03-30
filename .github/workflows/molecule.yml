@@ -27,6 +27,7 @@ jobs:
 
       - name: Lint code.
         run: |
+          ls -lah
           yamllint .
           ansible-lint .
 
