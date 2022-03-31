@@ -63,7 +63,7 @@
     mode: 0640
   notify:
     #- Reconvert keystore
-    #- Reset permissions on keystore
+    - Reset permissions on keystore
     - Restart Logstash
   tags:
     - certificates

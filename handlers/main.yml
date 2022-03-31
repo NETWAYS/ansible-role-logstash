@@ -28,4 +28,4 @@
     path: "{{ logstash_certs_dir }}/keystore.pfx"
     owner: root
     group: logstash
-    mode: 0660
+    mode: 0640
