@@ -17,6 +17,7 @@
     elasticsearch_security: false
     elastic_stack_full_stack: true
     elastic_variant: oss
+    elastic_security: false
     filebeat_syslog_udp: true
     filebeat_syslog_tcp: true
   tasks:
