@@ -156,12 +156,12 @@
     group: logstash
     mode: 0660
 
-- name: Set permissions on keystore
-  file:
-    path: "{{ logstash_certs_dir }}/keystore.pfx"
-    owner: root
-    group: logstash
-    mode: 0660
+#- name: Set permissions on keystore
+#  file:
+#    path: "{{ logstash_certs_dir }}/keystore.pfx"
+#    owner: root
+#    group: logstash
+#    mode: 0660
 
 - name: Fetch ca certificate from ca host to master
   fetch:
