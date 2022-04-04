@@ -54,6 +54,8 @@ Aside from `logstash.yml` we can manage Logstashs pipelines.
 * *logstash_elasticsearch*: Address of Elasticsearch instance for default output (default: list of Elasticsearch nodes from `elasticsearch` role or `localhost` when used standalone)
 * *logstash_security*: Enable X-Security (No default set, but will be activated when in full stack mode)
 * *logstash_legacy_monitoring*: Enables legacy monitoring - ignored when `elastic_stack_full_stack` is not set. (default: `true`)
+* *logstash_deactivate_log_to_syslog*: Don't additionally log to syslog (default: `true`)
+* *logstash_deactivate_log_error_to_syslog*: Don't additionally log errors to syslog (default: `true`)
 
 These variables are identical over all our elastic related roles, hence the different naming scheme.
 
