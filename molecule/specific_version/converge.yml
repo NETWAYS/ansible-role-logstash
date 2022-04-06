@@ -5,6 +5,10 @@
 # https://github.com/ansible-community/molecule/issues/1567#issuecomment-436876722
 - name: Converge
   hosts: all
+  vars:
+        logstash_manage_logging: true
+        logstash_logging_console: false
+        logstash_logging_slow_file: false
   tasks:
 
     - name: Set Logstash version on RedHat

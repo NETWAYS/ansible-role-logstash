@@ -75,6 +75,21 @@
     - configuration
     - logstash_configuration
 
+- name: Configure Logstash logging
+  template:
+    src: log4j2.properties.j2
+    dest: /etc/logstash/log4j2.properties
+    owner: root
+    group: root
+    mode: 0644
+    backup: "{{ logstash_config_backup }}"
+  notify:
+    - Restart Logstash
+  when: logstash_manage_logging | bool
+  tags:
+    - configuration
+    - logstash_configuration
+
 - name: Fetch pipelines from git repositories
   block:
     - name: Create Logstash pipeline directories
