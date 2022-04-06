@@ -20,11 +20,11 @@
         source: https://github.com/widhalmt/syslog-logstash-pipeline.git
         version: master
         input:
-        - name: syslog
-          key: input
+          - name: syslog
+            key: input
         output:
-        - name: syslog
-          key: netways-syslog-output
+          - name: syslog
+            key: netways-syslog-output
     logstash_connector_pipelines:
       - name: forwarder-distribute
         exclusive: false
