@@ -15,8 +15,7 @@
       - logstash-output-icinga
     logstash_global_ecs: "v1"
     logstash_pipelines:
-      syslog:
-        name: syslog
+      - name: syslog
         exclusive: false
         source: https://github.com/widhalmt/syslog-logstash-pipeline.git
         version: master

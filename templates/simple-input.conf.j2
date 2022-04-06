@@ -1,7 +1,7 @@
 input {
 {% for input in item.input %}
 
-# {{ input.name }} connector
+# {{ input.name }} input
   redis {
     host => "localhost"
     data_type => "list"
