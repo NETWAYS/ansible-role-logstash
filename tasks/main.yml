@@ -85,7 +85,7 @@
       group: root
       mode: 0755
     with_items: "{{ logstash_pipelines }}"
-    when: item.name is defined
+    #when: item.name is defined
 
   - name: Check out pipeline configuration
     git:
@@ -93,7 +93,7 @@
       dest: "/etc/logstash/conf.d/{{ logstash_pipelines[item].name }}"
       version: "{{ logstash_pipelines[item].version |default('main') }}"
     with_items: "{{ logstash_pipelines }}"
-    when: item.source is defined
+    #when: item.source is defined
     notify:
     - Restart Logstash noauto
 
@@ -106,7 +106,7 @@
       group: root
       mode: 0644
     with_items: "{{ logstash_pipelines }}"
-    when: item.input is defined
+    #when: item.input is defined
     notify:
     - Restart Logstash noauto
 
@@ -119,7 +119,7 @@
       group: root
       mode: 0644
     with_items: "{{ logstash_pipelines }}"
-    when: logstash_pipelines[item].output is defined
+    #when: logstash_pipelines[item].output is defined
     notify:
     - Restart Logstash noauto
 
