@@ -20,3 +20,34 @@
     fail:
       msg: "Icinga output not installed"
     when: not "logstash-output-icinga" in logstash_plugins_inst.stdout_lines
+
+  - name: Create Syslog input
+    copy:
+      dest: /etc/logstash/conf.d/syslog/input.conf
+      content: >
+        "input {
+           redis {
+             key => input
+             host => localhost
+             data_type => list
+           }
+         }
+        "
+
+  - name: Create Syslog output
+    copy:
+      dest: /etc/logstash/conf.d/syslog/output.conf
+      content: >
+        "output {
+           redis {
+             key => input
+             host => localhost
+             data_type => list
+           }
+         }
+        "
+  - name: Refresh Pipeline code
+    git:
+      repo: https://github.com/widhalmt/syslog-logstash-pipeline.git
+      dest: /etc/logstash/conf.d/syslog/
+      version: master
