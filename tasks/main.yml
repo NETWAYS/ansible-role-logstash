@@ -90,8 +90,8 @@
   - name: Check out pipeline configuration
     git:
       repo: "{{ item.source }}"
-      dest: "/etc/logstash/conf.d/{{ logstash_pipelines[item].name }}"
-      version: "{{ logstash_pipelines[item].version |default('main') }}"
+      dest: "/etc/logstash/conf.d/{{ item.name }}"
+      version: "{{ item.version |default('main') }}"
     with_items: "{{ logstash_pipelines }}"
     #when: item.source is defined
     notify:
@@ -113,7 +113,7 @@
   - name: Create simple output
     template:
       src: simple-output.conf.j2
-      dest: "/etc/logstash/conf.d/{{ logstash_pipelines[item].name }}\
+      dest: "/etc/logstash/conf.d/{{ item.name }}\
       /output.conf"
       owner: root
       group: root
