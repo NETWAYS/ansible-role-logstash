@@ -43,6 +43,7 @@
         owner: root
         group: root
         mode: 0755
+        state: directory
 
     - name: Create Syslog input
       copy:
@@ -52,7 +53,7 @@
              redis {
                key => input
                host => localhost
-               data_type => lit
+               data_type => list
              }
            }
           "
@@ -65,7 +66,7 @@
              redis {
                key => input
                host => localhost
-               data_type => lit
+               data_type => list
              }
            }
           "
