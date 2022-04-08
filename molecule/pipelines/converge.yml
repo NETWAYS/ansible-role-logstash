@@ -17,12 +17,6 @@
         exclusive: false
         source: https://github.com/Icinga/icinga-logstash-pipeline.git
         version: master
-        input:
-          - name: input
-            key: input
-        output:
-          - name: forwarder
-            key: forwarder
     logstash_connector_pipelines:
       - name: forwarder-distribute
         exclusive: false
