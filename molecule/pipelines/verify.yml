@@ -35,7 +35,7 @@
            }
          }
         "
-  - name: Refresh Pipeline code
+  - name: Update Pipeline code
     git:
       repo: https://github.com/widhalmt/syslog-logstash-pipeline.git
       dest: /etc/logstash/conf.d/syslog/
