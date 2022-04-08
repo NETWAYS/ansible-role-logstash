@@ -15,7 +15,7 @@
         version: master
       - name: icinga
         exclusive: false
-        source: git@github.com:Icinga/icinga-logstash-pipeline.git
+        source: https://github.com/Icinga/icinga-logstash-pipeline.git
         version: master
         input:
           - name: input
