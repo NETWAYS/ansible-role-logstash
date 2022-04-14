@@ -49,7 +49,7 @@
 
 {% endif %}
 {% if item.output is defined %}
-# Autoconfigured Redis outputs:{% for input in item.output %} {{ output.key }}{% endfor %}
+# Autoconfigured Redis outputs:{% for output in item.output %} {{ output.key }}{% endfor %}
 
 {% endif %}
 
@@ -70,7 +70,7 @@
 # Autoconfigured Redis inputs:{% for input in item.input %} {{ input.key }}{% endfor %}
 {% endif %}
 {% if item.output is defined %}
-# Autoconfigured Redis outputs:{% for input in item.output %} {{ output.key }}{% endfor %}
+# Autoconfigured Redis outputs:{% for output in item.output %} {{ output.key }}{% endfor %}
 {% endif %}
 
 - pipeline.id: ansible-{{ item.name }}-connector
