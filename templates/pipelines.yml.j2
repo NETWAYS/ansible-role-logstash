@@ -37,8 +37,12 @@
 # Filter code from {{ item.source }}
 # Version: {{ item.version |default('main') }}
 {% endif %}
+{% if item.input is defined %}
 # Autoconfigured Redis inputs:{% for input in item.input %} input.key{% endfor %}
+{% endif %}
+{% if item.output is defined %}
 # Autoconfigured Redis outputs:{% for input in item.output %} output.key{% endfor %}
+{% endif %}
 
 - pipeline.id: {{ item.name }}
   path.config: "/etc/logstash/conf.d/{{ item.name }}/*.conf"
@@ -52,8 +56,12 @@
 {% for item in logstash_connector_pipelines %}
 
 # Pipeline: {{ item.name }}
+{% if item.input is defined %}
 # Autoconfigured Redis inputs:{% for input in item.input %} input.key{% endfor %}
+{% endif %}
+{% if item.output is defined %}
 # Autoconfigured Redis outputs:{% for input in item.output %} output.key{% endfor %}
+{% endif %}
 
 - pipeline.id: ansible-{{ item.name }}-connector
   path.config: "/etc/logstash/conf.d/ansible-{{ item.name }}-connector/*.conf"
