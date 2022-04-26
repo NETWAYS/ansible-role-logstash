@@ -101,8 +101,8 @@
 
 - name: Copy certificate locally
   copy:
-    src: "{{ logstash_certs_dir }}/
-          {{ ansible_hostname }}/
+    src: "{{ logstash_certs_dir }}/\
+          {{ ansible_hostname }}/\
           {{ ansible_hostname }}.crt"
     dest: "{{ logstash_certs_dir }}/{{ inventory_hostname }}-server.crt"
     owner: root
@@ -114,8 +114,8 @@
 
 - name: Copy key locally
   copy:
-    src: "{{ logstash_certs_dir }}/
-          {{ ansible_hostname }}/
+    src: "{{ logstash_certs_dir }}/\
+          {{ ansible_hostname }}/\
           {{ ansible_hostname }}.key"
     dest: "{{ logstash_certs_dir }}/{{ inventory_hostname }}.key"
     owner: root
