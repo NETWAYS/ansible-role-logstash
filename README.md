@@ -9,6 +9,8 @@ It can optionally configure two types of Logstash pipelines:
 * Pipeline configuration managed in an external git repository
 * A default pipeline which will read from different Redis keys and write into Elasticsearch
 
+Details about configured pipelines will be written into `pipelines.yml` as comments. Same goes for logging configuration in `log4j.options`. 
+
 It will work with the standard Elastic Stack packages and Elastics OSS variant.
 
 Requirements
@@ -29,6 +31,7 @@ Role Variables
 * *logstash_enable*: Start and enable Logstash service (default: `true`)
 * *logstash_config_backup*: Keep backups of all changed configuration (default: `no`)
 * *logstash_manage_yaml*: Manage and overwrite `logstash.yml` (default: `true`)
+* *logstash_manage_logging*: Manage log4j configuration (default: `false`)
 * *logstash_plugins*: List of plugins to install (default: none)
 * *logstash_certs_dir*: Path to certificates. Will be used to build paths of several files. (Default: `/etc/logstash/certs`)
 
@@ -55,7 +58,20 @@ Aside from `logstash.yml` we can manage Logstashs pipelines.
 * *logstash_security*: Enable X-Security (No default set, but will be activated when in full stack mode)
 * *logstash_legacy_monitoring*: Enables legacy monitoring - ignored when `elastic_stack_full_stack` is not set. (default: `true`)
 
-These variables are identical over all our elastic related roles, hence the different naming scheme.
+The following variables configure Log4j for Logstash. All default to `true` as this is the default after the installation.
+
+* *logstash_logging_console*: Log to console - syslog when run via systemd
+* *logstash_logging_file*: Log to logfile
+* *logstash_logging_slow_console*: Log slowlog to console - syslog when run via systemd
+* *logstash_logging_slow_file*: Log slowlog to logfile
+
+The following variables configure extra fields in your events that help with identifying which pipelines have been passed or which pipeline is used how much.
+
+* *logstash_pipeline_identifier*: Activate this feature (default: `true`)
+* *logstash_pipeline_identifier_field_name*: Name of the field to add (default: `"[netways][pipeline]"`)
+* *logstash_pipeline_identifier_defaults*: Use identifiers in default pipelines, too (default: `false`) This could lead to the defaults dominating all statistics with virtually no value, but if you want to see, them, you can.
+
+The following variables are identical over all our elastic related roles, hence the different naming scheme.
 
 *elastic_release*: Major release version of Elastic stack to configure. (default: `7`)
 *elastic_variant*: Variant of the stack to install. Valid values: `elastic` or `oss`. (default: `elastic`)

@@ -4,6 +4,7 @@ logstash_version: ""
 logstash_enable: true
 logstash_config_backup: no
 logstash_manage_yaml: true
+logstash_manage_logging: false
 
 # config items in yaml file #
 
@@ -47,6 +48,15 @@ logstash_tls_key_passphrase: ChangeMe
 logstash_certs_dir: /etc/logstash/certs
 
 logstash_legacy_monitoring: true
+
+logstash_logging_console: true
+logstash_logging_file: true
+logstash_logging_slow_console: true
+logstash_logging_slow_file: true
+
+logstash_pipeline_identifier: true
+logstash_pipeline_identifier_field_name: "[netways][pipeline]"
+logstash_pipeline_identifier_defaults: false
 
 # elastic full stack configuration
 elastic_stack_full_stack: false
