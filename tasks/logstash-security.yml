@@ -83,7 +83,7 @@
 - name: Fetch certificate from ca host to master
   fetch:
     src: "{{ elastic_ca_dir }}/{{ ansible_hostname }}-ls.zip"
-    dest: "/tmp/{{ ansible_hostname }}.zip"
+    dest: "/tmp/{{ ansible_hostname }}-ls.zip"
     flat: yes
   delegate_to: "{{ elasticsearch_ca }}"
   tags:
@@ -91,7 +91,7 @@
 
 - name: Copy the certificate to actual node
   unarchive:
-    src: "/tmp/{{ ansible_hostname }}.zip"
+    src: "/tmp/{{ ansible_hostname }}-ls.zip"
     dest: "{{ logstash_certs_dir }}/"
     owner: root
     group: logstash
