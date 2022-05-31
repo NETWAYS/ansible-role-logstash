@@ -8,11 +8,11 @@ filter {
 }
 
 {% endif %}
-{% if logstash_ident | boold %}
+{% if logstash_ident | bool %}
 filter {
   mutate {
     add_field => {
-      "logstash_instance" => "{{ ansible_hostname }}"
+      "{{ logstash_ident_field_name }}" => "{{ ansible_hostname }}"
     }
   }
 }
