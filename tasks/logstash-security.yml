@@ -229,7 +229,7 @@
     https://{{ elasticsearch_ca }}:9200/_xpack/security/role/logstash_writer
   delegate_to: "{{ elasticsearch_ca }}"
   run_once: true
-  when: logstash_writer_role_present.rc > 0
+  #when: logstash_writer_role_present.rc > 0
 
 - name: Check for logstash_writer user
   shell: >
@@ -251,4 +251,4 @@
     https://{{ elasticsearch_ca }}:9200/_xpack/security/user/{{ logstash_user }}
   delegate_to: "{{ elasticsearch_ca }}"
   run_once: true
-  when: logstash_writer_user_present.rc > 0
+  #when: logstash_writer_user_present.rc > 0
