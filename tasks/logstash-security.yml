@@ -228,6 +228,7 @@
     -u elastic:{{ elastic_password_logstash.stdout }}
     https://{{ elasticsearch_ca }}:9200/_xpack/security/role/logstash_writer
   delegate_to: "{{ elasticsearch_ca }}"
+  changed_when: false # just for debugging
   run_once: true
   #when: logstash_writer_role_present.rc > 0
 
@@ -249,6 +250,7 @@
     --cacert {{ elastic_ca_dir }}/ca.crt
     -u elastic:{{ elastic_password_logstash.stdout }}
     https://{{ elasticsearch_ca }}:9200/_xpack/security/user/{{ logstash_user }}
+  changed_when: false # just for debugging
   delegate_to: "{{ elasticsearch_ca }}"
   run_once: true
   #when: logstash_writer_user_present.rc > 0
