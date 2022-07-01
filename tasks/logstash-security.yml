@@ -220,6 +220,7 @@
   register: logstash_writer_role_present
   run_once: true
 
+# tests show this task is broken
 - name: Put logstash_writer role into Elasticsearch
   command: >
     curl -T /root/logstash_writer_role --header 'Content-Type: application/json'
