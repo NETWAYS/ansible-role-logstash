@@ -3,4 +3,4 @@
   src: https://github.com/widhalmt/ansible-role-elastic-repos
   scm: git
 - name: geerlingguy.redis
-  version: "1.7.0"
+  version: "1.6.0"
