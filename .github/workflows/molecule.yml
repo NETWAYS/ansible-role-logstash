@@ -33,7 +33,6 @@ jobs:
     needs: lint
 
     strategy:
-      max-parallel: 4
       matrix:
         distro: [ubuntu2204]
         scenario: [default]
@@ -65,7 +64,7 @@ jobs:
     needs: molecule_default
 
     strategy:
-      max-parallel: 4
+      max-parallel: 1
       matrix:
         #distro: [centos7, rockylinux8, debian10, ubuntu2004, ubuntu1804]
         distro: [ubuntu2204]
