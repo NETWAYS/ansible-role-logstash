@@ -64,7 +64,7 @@ jobs:
     needs: molecule_default
 
     strategy:
-      max-parallel: 1
+      max-parallel: 4
       matrix:
         distro: [ubuntu2204]
         scenario: [run_logstash,
