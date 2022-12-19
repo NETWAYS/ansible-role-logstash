@@ -97,33 +97,28 @@
   tags:
   - configuration
   - logstash_configuration
+  with_items: "{{ logstash_pipelines }}"
   block:
   - name: Check if Logstash pipeline already exists
     stat:
       path: "/etc/logstash/conf.d/{{ item.name }}"
-    register: "{{ item.name }}-stat"
-    with_items: "{{ logstash_pipelines }}"
+    register: "pipeline_stat"
 
   - name: Check who managed pipeline in last run
-    shell:
-      set -e pipefail ;
-      grep -e "^# source:{{ item.name }}" |
-      cut -d: -f3
-    with_items: "{{ logstash_pipelines }}"
-    register: "{{ item.name }}-manager"
-    when: "{{ item.name }}-stat.stat.isdir | bool "
+    shell: >
+      "set -e pipefail ;
+      grep -e '^# source:{{ item.name }}'
+      cut -d: -f3"
+    register: "pipeline_manager"
+    when: "pipeline_stat.stat.isdir | bool "
 
-  # deleting and creating a directory doesn't go well with
-  # idempotence checks
   - name: Delete directory if changing manager
     file:
       path: "/etc/logstash/conf.d/{{ item.name }}"
       state: absent
     when:
-      - "{{ item.name }}-manager.stdout" == "local"
-      - "{{ item.source }} is defined"
-    #tags:
-    #  - molecule-idempotence-notest
+    - "pipeline_manager.stdout == local"
+    - "{{ item.source }} is defined"
 
   - name: Create Logstash pipeline directories
     file:
