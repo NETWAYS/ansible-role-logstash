@@ -27,23 +27,10 @@ logstash_no_pipelines: false
 logstash_elasticsearch_output: true
 logstash_beats_input: true
 logstash_beats_tls_encryptkey: true
-logstash_connector: true
 
 # logstash security
 logstash_user: logstash_writer
 logstash_password: password
-
-# connector pipelines
-# see docs/connector-pipelines.md for details
-logstash_connector_pipelines:
-  - name: default
-    exclusive: false
-    input:
-      - name: default
-        key: input
-    output:
-      - name: default
-        key: forwarder
 
 logstash_tls_key_passphrase: ChangeMe
 logstash_certs_dir: /etc/logstash/certs
