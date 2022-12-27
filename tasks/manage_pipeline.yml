@@ -20,6 +20,7 @@
     path: "/etc/logstash/conf.d/{{ item.name }}"
     state: absent
   when:
+  - "pipeline_manager.stdout is defined"
   - "pipeline_manager.stdout == local"
   - "{{ item.source }} is defined"
 
