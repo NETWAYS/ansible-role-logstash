@@ -11,7 +11,9 @@
     grep -e '^# source:{{ item.name }}'
     cut -d: -f3"
   register: "pipeline_manager"
-  when: "pipeline_stat.stat.isdir | bool "
+  when: 
+    - "pipeline_stat.stat.exists | bool "
+    - "pipeline_stat.stat.isdir | bool "
 
 - name: Delete directory if changing manager
   file:
