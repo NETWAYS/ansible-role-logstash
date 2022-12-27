@@ -20,7 +20,16 @@ logstash_manage_pipelines: true
 
 # this will deactivate all pipeline management
 logstash_no_pipelines: false
-# logstash_pipelines:
+
+logstash_pipelines:
+  - name: default
+    exclusive: false
+    input:
+      - name: default
+        key: input
+    output:
+      - name: default
+        key: forwarder
 #   shipper:
 #     name: shipper
 #     source: https://github.com/widhalmt/shipper-logstash-pipeline.git
