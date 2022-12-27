@@ -11,7 +11,7 @@
     grep -e '^# source:{{ item.name }}'
     cut -d: -f3"
   register: "pipeline_manager"
-  when: 
+  when:
     - "pipeline_stat.stat.exists | bool "
     - "pipeline_stat.stat.isdir | bool "
 
