@@ -13,7 +13,7 @@
   hosts: all
   vars:
     logstash_enable: true
-    logstash_security: true
+    logstash_security: false
     elasticsearch_security: false
     elastic_stack_full_stack: true
     elastic_variant: oss
