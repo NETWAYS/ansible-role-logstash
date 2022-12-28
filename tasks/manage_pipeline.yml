@@ -7,8 +7,9 @@
 
 - name: Check who managed pipeline in last run
   shell: >
-    "grep -e '^# source:{{ item.name }}' /etc/logstash/pipelines.yml |
-    cut -d: -f3"
+    set -e pipefail; 
+    grep -e '^# source:{{ item.name }}' /etc/logstash/pipelines.yml |
+    cut -d: -f3
   register: "pipeline_manager"
   when:
     - "pipeline_stat.stat.exists | bool "
