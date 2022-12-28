@@ -24,9 +24,9 @@
     path: "/etc/logstash/conf.d/{{ item.name }}"
     state: absent
   when:
-  - pipeline_manager.stdout is defined
-  - pipeline_manager.stdout == "local"
-  - {{ item.source }} is defined
+    - pipeline_manager.stdout is defined
+    - pipeline_manager.stdout == "local"
+    - item.source is defined
 
 - name: Create Logstash pipeline directories
   file:
@@ -45,7 +45,7 @@
   with_items: "{{ logstash_pipelines }}"
   when: item.source is defined
   notify:
-  - Restart Logstash noauto
+    - Restart Logstash noauto
 
 - name: Create simple input
   template:
@@ -58,7 +58,7 @@
   with_items: "{{ logstash_pipelines }}"
   when: item.input is defined
   notify:
-  - Restart Logstash noauto
+    - Restart Logstash noauto
 
 - name: Create simple output
   template:
@@ -71,4 +71,4 @@
   with_items: "{{ logstash_pipelines }}"
   when: item.output is defined
   notify:
-  - Restart Logstash noauto
+    - Restart Logstash noauto
