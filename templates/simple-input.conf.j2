@@ -5,7 +5,7 @@ input {
   redis {
     host => "localhost"
     data_type => "list"
-    key => "{{ pipelinename.key }}"
+    key => "{{ input.key }}"
   }
 {% endfor %}
 
