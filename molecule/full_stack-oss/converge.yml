@@ -18,6 +18,7 @@
     elastic_security: false
     filebeat_syslog_udp: true
     filebeat_syslog_tcp: true
+    logstash_beats_tls: false
   tasks:
     - name: "Include Elastics repos role"
       include_role:
