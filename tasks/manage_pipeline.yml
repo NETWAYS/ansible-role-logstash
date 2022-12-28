@@ -12,17 +12,21 @@
     cut -d: -f3
   register: "pipeline_manager"
   when:
-    - "pipeline_stat.stat.exists | bool "
-    - "pipeline_stat.stat.isdir | bool "
+    - pipeline_stat.stat.exists | bool
+    - pipeline_stat.stat.isdir | bool
+
+- name: Show pipeline manager
+  debug:
+    var: pipeline_manager.stdout
 
 - name: Delete directory if changing manager
   file:
     path: "/etc/logstash/conf.d/{{ item.name }}"
     state: absent
   when:
-  - "pipeline_manager.stdout is defined"
-  - "pipeline_manager.stdout == local"
-  - "{{ item.source }} is defined"
+  - pipeline_manager.stdout is defined
+  - pipeline_manager.stdout == "local"
+  - {{ item.source }} is defined
 
 - name: Create Logstash pipeline directories
   file:
