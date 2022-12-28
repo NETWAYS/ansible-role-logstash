@@ -50,13 +50,13 @@ Aside from `logstash.yml` we can manage Logstashs pipelines.
 * *logstash_pipelines*: List of pipelines with optional URL to repo (see docs/pipelines.md for details)
 * *logstash_global_ecs*: Set ECS compatibilty mode (default: none. Possible values: `disabled` or `v1`)
 * *logstash_elasticsearch_output*: Enable default pipeline to Elasticsearch (default: `true`)
+* *logstash_ident*: Add a field identifying the node that processed an event (default: `true`)
+* *logstash_ident_field_name*: Name of the identifying the instance (default: `"[netways][instance]"`)
 * *logstash_beats_input*: Enable default pipeline with `beats` input (default: `true`)
 * *logstash_beats_input_congestion*: Optional congestion threshold for the beats input pipeline
 * *logstash_beats_tls*: Activate TLS for the beats input pipeline (default: none but `true` with full stack setup if not set)
 * *logstash_beats_tls_encryptkey*: Enable encryption of key for beats input - disabling used as a workaround on certain hosts (default: true)
 * *logstash_tls_key_passphrase*: Passphrase for Logstash certificates (default: `ChangeMe`)
-* *logstash_connector*: Create pipelines to connect git managed pipelines. (default: `true`)
-* *logstash_connector_pipelines*: Definition of connector pipelines. See docs/connector-pipelines.md for details
 * *logstash_elasticsearch*: Address of Elasticsearch instance for default output (default: list of Elasticsearch nodes from `elasticsearch` role or `localhost` when used standalone)
 * *logstash_security*: Enable X-Security (No default set, but will be activated when in full stack mode)
 * *logstash_legacy_monitoring*: Enables legacy monitoring - ignored when `elastic_stack_full_stack` is not set. (default: `true`)
