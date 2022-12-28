@@ -16,10 +16,6 @@
     - pipeline_stat.stat.exists | bool
     - pipeline_stat.stat.isdir | bool
 
-- name: Show pipeline manager
-  debug:
-    var: pipeline_manager.stdout
-
 - name: Delete directory if changing manager
   file:
     path: "/etc/logstash/conf.d/{{ pipelinename.name }}"
