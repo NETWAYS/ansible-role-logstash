@@ -91,14 +91,16 @@
   - logstash_configuration
 
 - name: Fetch pipelines from git repositories
+  loop: "{{ logstash_pipelines }}"
+  include_tasks: manage_pipeline.yml
+  loop_control:
+    loop_var: pipelinename
   when:
   - logstash_pipelines is defined
   - not logstash_no_pipelines | bool
   tags:
   - configuration
   - logstash_configuration
-  with_items: "{{ logstash_pipelines }}"
-  include_tasks: manage_pipeline.yml
 
 - name: Create default Elasticsearch output pipeline
   when:

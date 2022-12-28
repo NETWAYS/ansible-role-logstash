@@ -2,15 +2,16 @@
 
 - name: Check if Logstash pipeline already exists
   stat:
-    path: "/etc/logstash/conf.d/{{ item.name }}"
+    path: "/etc/logstash/conf.d/{{ pipelinename.name }}"
   register: "pipeline_stat"
 
 - name: Check who managed pipeline in last run
   shell: >
     set -e pipefail ;
-    grep -e '^# source:{{ item.name }}' /etc/logstash/pipelines.yml |
+    grep -e '^# source:{{ pipelinename.name }}' /etc/logstash/pipelines.yml |
     cut -d: -f3
   register: "pipeline_manager"
+  changed_when: false
   when:
     - pipeline_stat.stat.exists | bool
     - pipeline_stat.stat.isdir | bool
@@ -21,54 +22,50 @@
 
 - name: Delete directory if changing manager
   file:
-    path: "/etc/logstash/conf.d/{{ item.name }}"
+    path: "/etc/logstash/conf.d/{{ pipelinename.name }}"
     state: absent
   when:
     - pipeline_manager.stdout is defined
     - pipeline_manager.stdout == "local"
-    - item.source is defined
+    - pipelinename.source is defined
 
 - name: Create Logstash pipeline directories
   file:
-    path: "/etc/logstash/conf.d/{{ item.name }}"
+    path: "/etc/logstash/conf.d/{{ pipelinename.name }}"
     state: directory
     owner: root
     group: root
     mode: 0755
-  with_items: "{{ logstash_pipelines }}"
 
 - name: Check out pipeline configuration
   git:
-    repo: "{{ item.source }}"
-    dest: "/etc/logstash/conf.d/{{ item.name }}"
-    version: "{{ item.version | default('main') }}"
-  with_items: "{{ logstash_pipelines }}"
-  when: item.source is defined
+    repo: "{{ pipelinename.source }}"
+    dest: "/etc/logstash/conf.d/{{ pipelinename.name }}"
+    version: "{{ pipelinename.version | default('main') }}"
+  when: pipelinename.source is defined
   notify:
     - Restart Logstash noauto
 
 - name: Create simple input
   template:
     src: simple-input.conf.j2
-    dest: "/etc/logstash/conf.d/{{ item.name }}\
+    dest: "/etc/logstash/conf.d/{{ pipelinename.name }}\
     /input.conf"
     owner: root
     group: root
     mode: 0644
-  with_items: "{{ logstash_pipelines }}"
-  when: item.input is defined
+  when: pipelinename.input is defined
   notify:
     - Restart Logstash noauto
 
 - name: Create simple output
   template:
     src: simple-output.conf.j2
-    dest: "/etc/logstash/conf.d/{{ item.name }}\
+    dest: "/etc/logstash/conf.d/{{ pipelinename.name }}\
     /output.conf"
     owner: root
     group: root
     mode: 0644
-  with_items: "{{ logstash_pipelines }}"
-  when: item.output is defined
+  when: pipelinename.output is defined
   notify:
     - Restart Logstash noauto
