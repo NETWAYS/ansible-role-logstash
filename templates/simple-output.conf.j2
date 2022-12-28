@@ -22,7 +22,7 @@ output {
     {% if output.congestion is defined %}congestion_threshold => {{ output.congestion }}{% endif %}
 
   }
-{% if output.condition is defined or item.exclusive | bool %}
+{% if output.condition is defined or pipelinename.exclusive | bool %}
 }
 {% endif %}
 {% endfor %}
